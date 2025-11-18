@@ -4,7 +4,6 @@
 
 int line_num = 1;
 
-/* List of VALID keywords (case-sensitive) */
 const char* keywords[] = {
     "Suppose", "Suppose_else", "Because_of", "give_out",
     "Correct", "Incorrect", "take", "show", 
@@ -13,17 +12,14 @@ const char* keywords[] = {
     NULL
 };
 
-/* Check if an identifier is a keyword but wrong-case or wrong-spelling */
 int is_keyword_variant(const char* text) {
     for (int i = 0; keywords[i] != NULL; i++) {
 
-        // check case-insensitive match
         if (strcasecmp(text, keywords[i]) == 0 &&
             strcmp(text, keywords[i]) != 0) {
-            return 1;  // same keyword but wrong capitalization
+            return 1;
         }
 
-        // OR check if prefix matches (e.g., Digi, SUppose)
         if (strncasecmp(text, keywords[i], 3) == 0 &&
             strcmp(text, keywords[i]) != 0) {
             return 1;
